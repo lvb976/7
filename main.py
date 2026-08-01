@@ -1,3 +1,4 @@
+import os
 from flask import Flask,render_template,redirect,url_for,send_from_directory,request,flash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -16,7 +17,7 @@ db = SQLAlchemy(model_class=Base)
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.db"
-app.config["SECRET_KEY"]='secret-key-goes-here'
+app.config["SECRET_KEY"]=os.environ.get('SECRET_KEY')
 
 db.init_app(app)
 
