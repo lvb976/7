@@ -16,7 +16,7 @@ db = SQLAlchemy(model_class=Base)
 
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.db"
+app.config["SQLALCHEMY_DATABASE_URI"] =os.environ.get('DB_KEY', 'sqlite:///users.db')
 app.config["SECRET_KEY"]=os.environ.get('SECRET_KEY')
 
 db.init_app(app)
